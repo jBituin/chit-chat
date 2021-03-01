@@ -1,11 +1,12 @@
 import config from './config';
 import server from './server';
+import { getConnection } from './packages/database';
 
 const PORT = config.SERVER_PORT || '3000';
 
 async function onStart(): Promise<any> {
   try {
-    // await getConnection();
+    await getConnection();
   } catch (err) {
     // tslint:disable-next-line:no-console
     console.log(err);
