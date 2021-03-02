@@ -5,8 +5,10 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Timestamp,
+  OneToMany,
 } from 'typeorm';
 import config from '../../../config';
+import { Post } from './post';
 
 @Entity(`${config.DB.MAIN_SCHEMA}.users`)
 export class User extends BaseEntity {
@@ -24,4 +26,7 @@ export class User extends BaseEntity {
 
   @Column('timestamp with time zone')
   public deleted_at: Timestamp;
+
+  @OneToMany(() => Post, (post) => post.user)
+  public posts: Post[];
 }
