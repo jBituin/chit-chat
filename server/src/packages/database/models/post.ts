@@ -5,7 +5,6 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Timestamp,
-  OneToMany,
   ManyToOne,
 } from 'typeorm';
 import { User } from './user';
