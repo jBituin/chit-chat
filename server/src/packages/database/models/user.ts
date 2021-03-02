@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import config from '../../../config';
 import { Post } from './post';
+import { Comment } from './comment';
 
 @Entity(`${config.DB.MAIN_SCHEMA}.users`)
 export class User extends BaseEntity {
@@ -29,4 +30,7 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Post, (post) => post.user)
   public posts: Post[];
+
+  @OneToMany(() => Comment, (comment) => comment.user)
+  public comments: Comment[];
 }
