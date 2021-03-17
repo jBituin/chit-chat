@@ -1,5 +1,5 @@
 import './App.css';
-import ChatList from './components/chat/ChatList';
+import ChatList from './components/chat/ChatUserList';
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
-import Chat from './Chat';
+import Chat from './ChatUser';
 
 export default function ChatList() {
   const chatList = [
