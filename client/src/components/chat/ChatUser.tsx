@@ -7,7 +7,7 @@ interface Props {
   latestChat: string;
 }
 
-export default function Chat(props: Props) {
+export default function ChatUser(props: Props) {
   let { chatName, chatImage, latestChat } = props;
   return (
     <Box maxW='sm' borderRadius='lg' overflow='hidden' my={4}>
