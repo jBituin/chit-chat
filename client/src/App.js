@@ -8,10 +8,10 @@ function App() {
     <Box className='App'>
       <header />
       <Grid h='100vh' templateColumns='repeat(5, 1fr)'>
-        <GridItem bg='darkblue' colSpan='1' p={2}>
+        <GridItem bg='#43d3c5' colSpan='1' p={2}>
           <ChatUserList></ChatUserList>
         </GridItem>
-        <GridItem bg='darkcyan' colSpan='4'>
+        <GridItem bg='#fff' colSpan='4'>
           <Chat></Chat>
         </GridItem>
       </Grid>
