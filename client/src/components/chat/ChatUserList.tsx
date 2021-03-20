@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, Input } from '@chakra-ui/react';
 import Chat from './ChatUser';
 
 export default function ChatList() {
@@ -18,6 +18,9 @@ export default function ChatList() {
 
   return (
     <Box maxW='sm' borderRadius='lg' overflow='hidden'>
+      <Box className='search' m='2'>
+        <Input type='text' placeholder='search' />
+      </Box>
       {chatList.map(({ chatName, chatImage, latestChat }) => {
         return (
           <Chat
