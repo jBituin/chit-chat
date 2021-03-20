@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Input } from '@chakra-ui/react';
 interface Props {
   onSend: (message: string) => void;
 }
@@ -24,7 +24,7 @@ export default function ChatInput(props: Props) {
 
   return (
     <form className='chat-input' onSubmit={submitHandler}>
-      <input
+      <Input
         type='text'
         onChange={textChangeHandler}
         value={chatInput}

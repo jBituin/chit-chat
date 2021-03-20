@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Messages from './Messages';
 import IMessage from '../../interfaces/message';
 import ChatInput from './ChatInput';
+import { Box } from '@chakra-ui/react';
 
 interface Props {
   username: string;
@@ -12,7 +13,7 @@ export default function Chat(props: Props) {
     {
       username: 'Joms',
       message: 'Hakdog',
-      fromMe: true,
+      fromMe: false,
     },
   ]);
 
@@ -33,10 +34,10 @@ export default function Chat(props: Props) {
   };
 
   return (
-    <div className='container'>
+    <Box className='container'>
       <h3>Chit-Chat</h3>
       <Messages messages={messages} />
       <ChatInput onSend={sendHandler} />
-    </div>
+    </Box>
   );
 }
