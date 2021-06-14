@@ -1,22 +1,48 @@
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import multer from 'multer';
+import path from 'path';
 import config from './config';
-import server from './server';
-import { getConnection } from './packages/database';
-import { Server } from 'socket.io';
-import http from 'http';
 
-const PORT = config.SERVER_PORT || '3000';
+dotenv.config();
 
-async function onStart(): Promise<any> {
+const app = express();
+
+mongoose.connect(
+  config().database.getUrl(),
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log('Connected to MongoDB');
+  },
+);
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
+
+//middleware
+app.use(express.json());
+app.use(helmet());
+app.use(morgan('common'));
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/images');
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.name);
+  },
+});
+
+const upload = multer({ storage: storage });
+app.post('/api/upload', upload.single('file'), (req, res) => {
   try {
-    await getConnection();
-  } catch (err) {
-    // tslint:disable-next-line:no-console
-    console.log(err);
-    throw err;
+    return res.status(200).json('File uploded successfully');
+  } catch (error) {
+    console.error(error);
   }
-}
+});
 
-const io = new Server(http.createServer(server));
-server.listen(PORT, onStart);
-// tslint:disable-next-line:no-console
-console.log(`Server up and running on https://localhost:${PORT}`);
+app.listen(8800, () => {
+  console.log('Backend server is running!');
+});
