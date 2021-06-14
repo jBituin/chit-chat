@@ -6,7 +6,8 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
-    "target": "es2019",
+    "esModuleInterop": true,
+    "target": "es6",
     "outDir": "./build",
     "paths": {
       "~/*": ["src/*"]
