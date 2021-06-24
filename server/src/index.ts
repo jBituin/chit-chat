@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import multer from 'multer';
 import path from 'path';
 import config from './config';
+import socketConnection from './socketConnection';
 
 dotenv.config();
 
@@ -46,3 +47,5 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
 app.listen(8800, () => {
   console.log('Backend server is running!');
 });
+
+socketConnection(app);
