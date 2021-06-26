@@ -22,19 +22,19 @@ export default function (app: Express) {
   };
 
   io.on('connection', (socket) => {
-    //when ceonnect
+    //when connect
     console.log('a user connected.');
 
     //take userId and socketId from user
-    socket.on('addUser', (userId) => {
+    socket.on('ADD_USER', (userId) => {
       addUser(userId, socket.id);
-      io.emit('getUsers', users);
+      io.emit('GET_USERS', users);
     });
 
     //send and get message
-    socket.on('sendMessage', ({ senderId, receiverId, text }) => {
+    socket.on('SEND_MESSAGE', ({ senderId, receiverId, text }) => {
       const user = getUser(receiverId);
-      io.to(user.socketId).emit('getMessage', {
+      io.to(user.socketId).emit('GET_MESSAGE', {
         senderId,
         text,
       });
@@ -44,7 +44,7 @@ export default function (app: Express) {
     socket.on('disconnect', () => {
       console.log('a user disconnected!');
       removeUser(socket.id);
-      io.emit('getUsers', users);
+      io.emit('GET_USERS', users);
     });
   });
 }
